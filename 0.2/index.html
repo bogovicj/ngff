@@ -12,7 +12,7 @@
  *   - .toc for the Table of Contents (<ol class="toc">)
  *     + <span class="secno"> for the section numbers
  *   - #toc for the Table of Contents (<nav id="toc">)
- *   - ul.index for Indices (<a href="#ref">term</a><span>, in §N.M</span>)
+ *   - ul.index for Indices (<a href="#ref">term</a><span>, in § N.M</span>)
  *   - table.index for Index Tables (e.g. for properties or elements)
  *
  * Structural Markup
@@ -1269,7 +1269,7 @@ Possible extra rowspan handling
 	ul.index ul,
 	ul.index dl { font-size: smaller; }
 	@media not print {
-		ul.index li span:not(.dfn-paneled) {
+		ul.index li a + span {
 			white-space: nowrap;
 			color: transparent; }
 		ul.index li a:hover + span,
@@ -1487,9 +1487,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 59d067506, updated Fri Jul 23 15:43:29 2021 -0700" name="generator">
+  <meta content="Bikeshed version 2e3c4c68b, updated Fri Jan 14 14:49:00 2022 -0800" name="generator">
   <link href="https://ngff.openmicroscopy.org/0.2/" rel="canonical">
-  <meta content="4f8065a7ab70f88f8e3d0ac049be5647a30550ab" name="document-revision">
+  <meta content="90de9f1c440bf7dccaac34fcfceb5785fc09ada5" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1690,6 +1690,16 @@ figcaption {
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
 }</style>
+<style>/* style-issues */
+
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1815,7 +1825,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
     <img alt="OME logo (6 circles in a hexagon)" src="http://www.openmicroscopy.org/img/logos/ome-logomark.svg" style="float:right;width:42px;height:42px;"> 
    <h1 class="p-name no-ref" id="title">Next-generation file formats (NGFF)</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Final Community Group Report, <time class="dt-updated" datetime="2021-08-03">3 August 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Final Community Group Report, <time class="dt-updated" datetime="2022-02-01">1 February 2022</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1829,7 +1839,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright">Copyright © 2021 <a href="https://www.openmicroscopy.org/"><abbr title="Open Microscopy Environment">OME</abbr></a><sup>®</sup> (<a href="https://dundee.ac.uk/"><abbr title="University of Dundee">U. Dundee</abbr></a>).
+   <p class="copyright" data-fill-with="copyright">Copyright © 2022 <a href="https://www.openmicroscopy.org/"><abbr title="Open Microscopy Environment">OME</abbr></a><sup>®</sup> (<a href="https://dundee.ac.uk/"><abbr title="University of Dundee">U. Dundee</abbr></a>).
 OME trademark rules apply. </p>
    <hr title="Separator for header">
   </div>
@@ -2419,25 +2429,25 @@ The latest edition is available at <a href="https://ngff.openmicroscopy.org/late
     and are not intended to be performant.
     Implementers are encouraged to optimize. </p>
   </div>
-<script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+<script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#hdf5">HDF5</a><span>, in §1.1</span>
-   <li><a href="#ngff">NGFF</a><span>, in §1.1</span>
+   <li><a href="#hdf5">HDF5</a><span>, in § 1.1</span>
+   <li><a href="#ngff">NGFF</a><span>, in § 1.1</span>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-rfc2119">[RFC2119]
-   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
+   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-n5">[N5]
-   <dd>John A. Bogovic; et al. <a href="https://github.com/saalfeldlab/n5/issues/62">N5---a scalable Java API for hierarchies of chunked n-dimensional tensors and structured meta-data</a>. 2020. Informational. URL: <a href="https://github.com/saalfeldlab/n5/issues/62">https://github.com/saalfeldlab/n5/issues/62</a>
+   <dd>John A. Bogovic; et al. <a href="https://github.com/saalfeldlab/n5/issues/62"><cite>N5---a scalable Java API for hierarchies of chunked n-dimensional tensors and structured meta-data</cite></a>. 2020. Informational. URL: <a href="https://github.com/saalfeldlab/n5/issues/62">https://github.com/saalfeldlab/n5/issues/62</a>
    <dt id="biblio-ome-zarr-py">[OME-ZARR-PY]
-   <dd>OME; et al. <a href="https://doi.org/10.5281/zenodo.4113931">ome-zarr-py: Experimental implementation of next-generation file format (NGFF) specifications for storing bioimaging data in the cloud.</a>. 06 October 2020. Informational. URL: <a href="https://doi.org/10.5281/zenodo.4113931">https://doi.org/10.5281/zenodo.4113931</a>
+   <dd>OME; et al. <a href="https://doi.org/10.5281/zenodo.4113931"><cite>ome-zarr-py: Experimental implementation of next-generation file format (NGFF) specifications for storing bioimaging data in the cloud.</cite></a>. 06 October 2020. Informational. URL: <a href="https://doi.org/10.5281/zenodo.4113931">https://doi.org/10.5281/zenodo.4113931</a>
    <dt id="biblio-zarr">[ZARR]
-   <dd>Alistair Miles; et al. <a href="https://doi.org/10.5281/zenodo.4069231">Zarr: An implementation of chunked, compressed, N-dimensional arrays for Python.</a>. 06 October 2020. Informational. URL: <a href="https://doi.org/10.5281/zenodo.4069231">https://doi.org/10.5281/zenodo.4069231</a>
+   <dd>Alistair Miles; et al. <a href="https://doi.org/10.5281/zenodo.4069231"><cite>Zarr: An implementation of chunked, compressed, N-dimensional arrays for Python.</cite></a>. 06 October 2020. Informational. URL: <a href="https://doi.org/10.5281/zenodo.4069231">https://doi.org/10.5281/zenodo.4069231</a>
   </dl>
