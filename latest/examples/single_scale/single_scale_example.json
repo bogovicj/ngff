@@ -1,0 +1,19 @@
+{
+    "coordinateSystems" : [
+        {
+            "name" : "example-micrometer",
+            "axes": [
+                {"name": "z", "type": "space", "unit": "micrometer"},
+                {"name": "y", "type": "space", "unit": "micrometer"},
+                {"name": "x", "type": "space", "unit": "micrometer"}
+            ]
+        }
+    ],
+    "coordinateTransformations": [
+        {
+            "type": "scale",
+            "scale": [0.1, 0.1, 0.1],
+            "output" : "example-micrometer"
+        }
+    ]
+}

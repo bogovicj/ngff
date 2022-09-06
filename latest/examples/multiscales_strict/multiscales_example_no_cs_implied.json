@@ -4,16 +4,15 @@
             "version": "0.5-dev",
             "name": "example",
             "coordinateSystems" : [
-                {"name": "microns", "axes": [ "traw", "c", "z", "y", "x" ]},
-                {"name": "example", "axes": [ "t", "c", "z", "y", "x" ]}
+                {"name" : "tmp", "axes" : [ "t", "c", "z", "y", "x" ]},
+                {"name" : "example", "axes" : [ "t", "c", "z", "y", "x" ]}
             ],
             "axes": [
                 {"name": "t", "type": "time", "unit": "millisecond"},
                 {"name": "c", "type": "channel"},
                 {"name": "z", "type": "space", "unit": "micrometer"},
                 {"name": "y", "type": "space", "unit": "micrometer"},
-                {"name": "x", "type": "space", "unit": "micrometer"},
-                {"name": "traw" }
+                {"name": "x", "type": "space", "unit": "micrometer"}
             ],
             "datasets": [
                 {
@@ -22,7 +21,8 @@
                         // the voxel size for the first scale level (0.5 micrometer)
                         "type": "scale",
                         "scale": [1.0, 1.0, 0.5, 0.5, 0.5],
-                        "output" : "microns"
+                        "input" : "0",
+                        "output" : "tmp"
                     }]
                 },
                 {
@@ -31,7 +31,8 @@
                         // the voxel size for the second scale level (downscaled by a factor of 2 -> 1 micrometer)
                         "type": "scale",
                         "scale": [1.0, 1.0, 1.0, 1.0, 1.0],
-                        "output" : "microns"
+                        "input" : "1",
+                        "output" : "tmp"
                     }]
                 },
                 {
@@ -40,7 +41,8 @@
                         // the voxel size for the third scale level (downscaled by a factor of 4 -> 2 micrometer)
                         "type": "scale",
                         "scale": [1.0, 1.0, 2.0, 2.0, 2.0],
-                        "output" : "microns"
+                        "input" : "2",
+                        "output" : "tmp"
                     }]
                 }
             ],
@@ -48,7 +50,7 @@
                 // the time unit (0.1 milliseconds), which is the same for each scale level
                 "type": "scale",
                 "scale": [0.1, 1.0, 1.0, 1.0, 1.0],
-                "input" : "microns",
+                "input" : "tmp",
                 "output" : "example"
             }],
             "type": "gaussian",

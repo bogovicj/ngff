@@ -3,17 +3,12 @@
         {
             "version": "0.5-dev",
             "name": "example",
-            "coordinateSystems" : [
-                {"name": "microns", "axes": [ "traw", "c", "z", "y", "x" ]},
-                {"name": "example", "axes": [ "t", "c", "z", "y", "x" ]}
-            ],
             "axes": [
                 {"name": "t", "type": "time", "unit": "millisecond"},
                 {"name": "c", "type": "channel"},
                 {"name": "z", "type": "space", "unit": "micrometer"},
                 {"name": "y", "type": "space", "unit": "micrometer"},
-                {"name": "x", "type": "space", "unit": "micrometer"},
-                {"name": "traw" }
+                {"name": "x", "type": "space", "unit": "micrometer"}
             ],
             "datasets": [
                 {
