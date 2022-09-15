@@ -270,7 +270,7 @@ The order of the `"axes"` list matters and defines the index of each array dimen
 coordinate system. For the above example, the `"x"` dimension is the first dimension.
 
 
-### Array coordinate systems and indexing
+### Array coordinate systems and indexing {#array-coordinates}
 
 Every array has a default coordinate system whose parameters need not be explicitly defined.  Its name is the path to the array
 in the container, its axes have `"type":"array"`, are unitless, and have default "name"s. The ith axis has `"name":"dim_i"`. 
@@ -336,7 +336,7 @@ axes array MUST equal `"array"`.
 ```
 
 
-### Coordinate convention
+### Coordinate convention {#trafo-coord-convention}
 
 **The pixel/voxel center is the origin of the continuous coordinate system.**
 
@@ -420,15 +420,15 @@ Conforming readers:
 - MAY enable applying transformations to points
 - MAY enable applying transformations to images
 
-### Transformation inverses 
+### Transformation inverses {#trafo-inverses}
 
 Implementations SHOULD be able to compute and apply the inverse of some coordinate transformations when they
-are computable in closed-form (as the [Transformation types](#transformation-types) section below indicates). If an
+are computable in closed-form (as the [Transformation types](#trafo-types) section below indicates). If an
 operation is requested that requires the inverse of a transformation that can not be inverted in closed-form,
 implementations MAY estimate an inverse, or MAY output a warning that the requested operation is unsupported.
 
 
-### Transformation types
+### Transformation types {#trafo-types}
 
 Input and output dimensionality may be determined by the value of the "input" and "output" fields, respectively. If the value
 of "input" is an array, it's length gives the input dimension, otherwise the length of "axes" for the coordinate
@@ -437,7 +437,7 @@ length gives the input imension, otherwise it is given by the length of "axes" f
 the name of the "input".  If the value of "output" is an array, it's length gives the output dimension,
 otherwise it is given by the length of "axes" for the coordinate system with the name of the "output".
 
-#### identity
+#### identity {#trafo-identity}
 
 `identity` transformations map input coordinates to output coordinates without modification. The position of
 the ith axis of the output coordinate system is set to the position of the ith axis of the input coordinate
@@ -459,7 +459,7 @@ y = j
 
 </div>
 
-#### mapIndex
+#### mapIndex {#trafo-mapIndex}
 
 `mapIndex` transformations describe axis permutations as a reordering of the input dimensions.
 Transformations MUST include a `mapIndex` field whose value is an array of integers. If the ith element of the array is j, it
@@ -513,7 +513,7 @@ z = b
 
 </div>
 
-#### mapAxis
+#### mapAxis {#trafo-mapAxis}
 
 `mapAxis` transformations describe axis permutations as a mapping of axis names. Transformations MUST include a `mapAxis` field
 whose value is an object, all of whose values are strings. If the object contains `"x":"i"`, then the transform sets the value 
@@ -566,7 +566,7 @@ z = b
 ```
 </div>
 
-#### translation
+#### translation {#trafo-translation}
 
 `translation` transformations are special cases of affine transformations. When possible, a 
 translation transformation should be preferred to its equivalent affine. Input and output dimensionality MUST be
@@ -599,7 +599,7 @@ y = j - 1.42
 ```
 </div>
 
-#### scale
+#### scale {#trafo-scale}
 
 `scale` transformations are special cases of affine transformations. When possible, a scale transformation
 SHOULD be defined to its equivalent affine. Input and output dimensionality MUST be identical and MUST equal
@@ -632,7 +632,7 @@ y = 2.12 * j
 ```
 </div>
 
-#### affine
+#### affine {#trafo-affine}
 
 `affine` transformations from N-dimensional inputs to M-dimensional outputs are represented at `(N)x(M+1)`
 matrices in homogeneous coordinates. This transformation type is invertible when `N` equals `M`.
@@ -683,7 +683,7 @@ The matrix may be stored as a 2D array or as a 1D array (row-major).
 </div>
 
 
-#### rotation
+#### rotation {#trafo-rotation}
 
 `rotation` transformations are special cases of affine transformations.
 When possible, a rotation transformation SHOULD be defined rather than
@@ -730,7 +730,7 @@ and columns. `rotation` transformations are invertible.
 </div>
 
 
-#### inverseOf
+#### inverseOf {#trafo-inverseOf}
 
 An `inverseOf` transformation contains another transformation (often non-linear), and indicates that
 transforming points from output to input coordinate systems is possible using the contained transformation.
@@ -765,7 +765,7 @@ For example
 ```
 </div>
 
-#### sequence
+#### sequence {#trafo-sequence}
 
 A `sequence` transformation consists of an ordered array of coordinate transformations, and is invertible if and only if every
 coordinate transform in the array is invertible.
@@ -797,7 +797,7 @@ and is invertible.
 </div>
 
 
-#### coordinates and displacements
+#### coordinates and displacements {#trafo-coordinates-displacements}
 
 `coordinates` and `displacements` transformations store coordinates or displacements in an array and interpret them as a transformation.
 Applying the transformation amounts to looking up the appropriate locations in the array and interpolating.
@@ -925,7 +925,7 @@ The transformation specifies linear interpolation, which in this case yields
 input point, hence the output is `1.0 + (-0.5) = 0.5`.
 
 
-#### byDimension
+#### byDimension {#byDimension}
 
 `byDimension` transformations build a high dimensional transformation using lower dimensional transformations
 on subsets of dimensions.
@@ -989,7 +989,7 @@ This transformation is invalid because the output axis `x` appears in more than 
 </div>
 
 
-#### bijection
+#### bijection {#trafo-bijection}
 
 A bijection transformation is an invertible transformation in which both the `forward` and `inverse` transformations
 are explicitly defined. Each direction SHOULD be a transformation type that is not closed-form invertible.
@@ -1034,7 +1034,7 @@ the input and output of the `forward` and `inverse` transformations are understo
 </div>
 
 
-### Points, coordinates, direction, and indexing
+### Points, coordinates, direction, and indexing {#trafo-points-coords}
 
 Coordinate transformations are are functions of *points* in the input space to *points* in the output space. We call this the "forward" direction.
 Points are ordered lists of coordinates, where a coordinate is the location/value of that point along its corresponding axis.
@@ -1074,7 +1074,7 @@ transformation type, for example:
 }
 ```
 
-### Spaces and axes
+### Coordinate systems and axes {#trafo-coordsys-axes}
 
 Every coordinate transformation MUST specify its output coordinate system using `output` to with a string value
 corresponding to the name of an output space or with an array of strings to provide a list of axis names.
