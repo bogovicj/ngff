@@ -1125,6 +1125,71 @@ the input and output of the `forward` and `inverse` transformations are understo
 
 </div>
 
+#### Thin-plate spline
+
+Thin plate spline (TPS) transformations are non-linear, physics-based transformations.
+
+<dl>
+  <dt><strong>path</strong></dt>
+  <dd>  The location of a table in which source 
+  <dt><strong>url</strong></dt>
+  <dd>  An optional URL to the container in which the landmark table is stored. If not provided,
+        the provided `path` MUST exist in this container.</dd>
+  <dt><strong>inputPoints</strong></dt>
+  <dd> An array of arrays of numbers, where each inner array represents a landmark point in the input coordinate system.
+       The inner arrays MUST all have length equal to the dimensionality of the input coordinate system.
+  </dd>
+  <dt><strong>outputPoints</strong></dt>
+  <dd> An array of arrays of numbers, where each inner array represents a target landmark point in the output coordinate system.
+       This field MAY be omitted, but if so, `weights` MUST be present. 
+       The outer array MUST be the same length as the `inputPoints` array. 
+       The inner arrays MUST all have length equal to the dimensionality of the output coordinate system.
+       </dd>
+  <dt><strong>weights</strong></dt>
+  <dd> An array of arrays of numbers, where each inner array represents the weight.
+       This field MAY be omitted, but if so, `outputPoints` MUST be present. 
+       The outer array must be the same length as the `inputPoints` array. 
+       The inner arrays MUST all have length equal to the dimensionality of the output coordinate system.
+       </dd>
+</dl>
+
+
+See also [A physics-based coordinate transformation for 3-D image matching](https://doi.org/10.1109/42.585766).
+
+
+<div class=example>
+
+<pre class=include-code>
+path: examples/transformations/thinPlateSpline.json
+highlight: json
+</pre>
+
+</div>
+
+<div class=example>
+
+<pre class=include-code>
+path: examples/transformations/thinPlateSplinePath.json
+highlight: json
+</pre>
+
+</div>
+
+<div class=example>
+
+The transformation below is invalid for three reasons:
+1) The length of the inner arrays of sourcePoints (3) does not equal the dimensionality of input `ij` (2)
+2) The length of the targetPoints arrays (2) does not equal the length of the sourcePoints array (4)
+2) The length of the inner arrays of weights do not all equal the dimensionality of output `xy` (2)
+
+<pre class=include-code>
+path: examples/transformations/thinPlateSplineInvalid.json
+highlight: json
+</pre>
+
+</div>
+
+
 
 
 "multiscales" metadata {#multiscale-md}
