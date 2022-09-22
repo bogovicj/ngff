@@ -1,0 +1,29 @@
+{
+    "coordinateSystems": [
+        { "name": "ij", "axes": [{"name": "i"}, {"name": "j"}] },
+        { "name": "xy", "axes": [{"name": "x"}, {"name": "y"}] }
+    ],
+    "coordinateTransformations": [
+        {
+            "name": "INVALID",
+            "type": "thinPlateSpline",
+            "input": "ij",
+            "output": "xy",
+            "inputPoints" : [
+                [0,0,0],
+                [1,1,1],
+                [2,2,2],
+                [3,3,3]
+            ],
+            "outputPoints" : [
+                [0,0],
+                [1,1]
+            ],
+            "weights" : [
+                [1],
+                [2,3],
+                [4,5]
+            ]
+        }
+    ]
+}

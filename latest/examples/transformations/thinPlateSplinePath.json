@@ -1,0 +1,13 @@
+{
+    "coordinateSystems": [
+        { "name": "ij", "axes": [{"name": "i"}, {"name": "j"}] },
+        { "name": "xy", "axes": [{"name": "x"}, {"name": "y"}] }
+    ],
+    "coordinateTransformations": [{
+        "name": "a thin plate spline",
+        "type": "thinPlateSpline",
+        "path": "/tps",
+        "input": "ij",
+        "output": "xy"
+    }]
+}

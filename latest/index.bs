@@ -1125,9 +1125,16 @@ the input and output of the `forward` and `inverse` transformations are understo
 
 </div>
 
-#### Thin-plate spline
+#### thinPlateSpline
 
-Thin plate spline (TPS) transformations are non-linear, physics-based transformations.
+Thin plate spline (TPS) transformations are non-linear, physics-based transformations. To compute the transformation for a point
+`x` in the input space, the distance of `x` to each of a set of landmark points in the input space also needs to be computed.
+The field `inputPoints` MUST appear and store these points.  Each `inputPoint` has a corresponding weight for each output
+dimension, which MAY be stored using the `weights` attribute. Usually, a TPS is found using a set of input and output landmark
+points. The landmark points in output space MAY be stored in the `outputPoints` attribute.  One of `weights` or `outputPoints`
+MUST appear. If both appear, implementations should use `weights` to compute the transformation. If only `outputPoints` appears,
+conforming implementations should compute weights using the `inputPoints` and `outputPoints`. TPS transforms are not invertible
+in general, but implementations MAY approximate their inverses. 
 
 <dl>
   <dt><strong>path</strong></dt>
