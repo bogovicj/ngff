@@ -1,0 +1,46 @@
+{
+    "coordinateSystems": [
+        { "name": "ij", "axes": [{"name": "i"}, {"name": "j"}] },
+        { "name": "xy", "axes": [{"name": "x"}, {"name": "y"}] }
+    ],
+    "coordinateTransformations": [
+    {
+        "name": "a thin plate spline with an affine",
+        "type": "thinPlateSpline",
+        "input": "ij",
+        "output": "xy",
+        "affine": [ 2, 0, -1, 3, 0, -2 ],
+        "inputPoints": [
+            [0,0],
+            [5,5]
+        ],
+        "weights": [
+            [1,1],
+            [2,2]
+        ]
+    },
+    {
+        "name": "a sequence that is equivalent to the above. Note the affine comes second.",
+        "type": "sequence",
+        "input": "ij",
+        "output": "xy",
+        "transformations": [
+            {
+                "type": "thinPlateSpline",
+                "inputPoints": [
+                    [0,0],
+                    [5,5]
+                ],
+                "weights": [
+                    [1,1],
+                    [2,2]
+                ]
+            },
+            {
+                "type": "affine",
+                "affine": [ 2, 0, -1, 3, 0, -2 ]
+            }
+        ]
+    }
+    ]
+}

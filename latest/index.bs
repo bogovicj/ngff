@@ -1136,12 +1136,22 @@ MUST appear. If both appear, implementations should use `weights` to compute the
 conforming implementations should compute weights using the `inputPoints` and `outputPoints`. TPS transforms are not invertible
 in general, but implementations MAY approximate their inverses. 
 
+Since affine transformations are often jointly estimated alongside thin plate spline transformations,
+the parameters of an affine MAY be included as part of a `thinPlateSpline` transformation. In this case,
+the affine is applied after the thin plate spline (see the example below).
+
 <dl>
   <dt><strong>path</strong></dt>
   <dd>  The location of a table in which source 
   <dt><strong>url</strong></dt>
   <dd>  An optional URL to the container in which the landmark table is stored. If not provided,
         the provided `path` MUST exist in this container.</dd>
+  <dt><strong>affine</strong></dt>
+  <dd> 	(Optional) The affine parameters stored in JSON. The matrix may be stored
+        as a row-major flat list of numbers the list MUST be length `N*(M+1)`.
+        If omitted, the affine MUST be assumed to be the identity, and
+        the dimensionality of the input and output coordinate systems
+        MUST be equal. </dd>
   <dt><strong>inputPoints</strong></dt>
   <dd> An array of arrays of numbers, where each inner array represents a landmark point in the input coordinate system.
        The inner arrays MUST all have length equal to the dimensionality of the input coordinate system.
@@ -1166,17 +1176,11 @@ See also [A physics-based coordinate transformation for 3-D image matching](http
 
 <div class=example>
 
-<pre class=include-code>
-path: examples/transformations/thinPlateSpline.json
-highlight: json
-</pre>
-
-</div>
-
-<div class=example>
+An example of a `thinPlateSpline` transformation with an associated affine. The second transformation shows a
+equivalent sequence. Note that the affine is applied second.
 
 <pre class=include-code>
-path: examples/transformations/thinPlateSplinePath.json
+path: examples/transformations/thinPlateSplineAffine.json
 highlight: json
 </pre>
 
