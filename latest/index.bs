@@ -390,10 +390,10 @@ input space to *points* in the output space.
     <td> `"transformations":List[Transformation]`
     <td>A sequence of transformations, Applying the sequence applies the composition of all transforms in the list, in order.
   <tr><th>`displacements`
-    <td>`"url":str`<br>`"path":str`<br>`"interpolation":str`
+    <td>`"url":str`<br>`"path":str`<br>`"interpolation":str` <br>`"valueScale":number` <br>`"valueOffset":number`
     <td>Displacement field transformation in this container (path) or another container located at (url).
   <tr><th>`coordinates`
-    <td>`"url":str`<br>`"path":str`<br>`"interpolation":str`
+    <td>`"url":str`<br>`"path":str`<br>`"interpolation":str` <br>`"valueScale":number` <br>`"valueOffset":number`
     <td>Coordinate field transformation in this container (path) or another container located at (url).
   <tr><th>`inverseOf`
     <td>`"transform":Transform`
@@ -925,6 +925,10 @@ MAY approximate their inverses. Metadata for these coordinate transforms have th
   <dt><strong>url</strong></dt>
   <dd>  An optional URL to the container in which the coordinate field array is stored. If not provided,
         the provided `path` MUST exist in this container.</dd>
+  <dt><strong>valueScale</strong></dt>
+  <dd>  An optional number that values of the array data are multiplied by. Is useful for quantization. Assume a value of 1.0 if not provided.</dd>
+  <dt><strong>valueOffset</strong></dt>
+  <dd>  An optional number that is added to values of the array after being scaled by `valueScale`.  Is useful for quantization. Assume a value of 0.0 if not provided.</dd>
   <dt><strong>interpolation</strong></dt>
   <dd>  The `interpolation` attributes MAY be provided. It's value indicates
         the interpolation to use if transforing points not on the array's discrete grid.
@@ -942,6 +946,10 @@ The array data at `path` MUST define space and coordinate transform metadata:
 * Every axis name in the `coordinateTransform`'s `input` MUST appear in the space
 * The array dimension corresponding to the coordinate axis MUST have length greater than or equal to the dimensionality of the `coordinateTransform` `output`
 * SHOULD have `name` equal to the `name` of the corresponding `coordinateTransform`.
+
+The array data MAY be stored as any type in the zarr array, but should be interpreted as float-valued. Values in the zarr array `x`
+MUST be passed through the linear function `valueScale * x + valueOffset`. If `valueScale` is not provided, assume a value of 1.0.
+If `valueOffset` is not provided, assume a value of 0.0.
 
 For `coordinates`:
 
