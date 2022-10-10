@@ -127,7 +127,8 @@ Images {#image-layout}
 The following layout describes the expected Zarr hierarchy for images with
 multiple levels of resolutions and optionally associated labels.
 Note that the number of dimensions is variable and axis names are arbitrary, see [[#multiscale-md]] for details.
-For this example we assume an image with 5 dimensions and axes called `t,c,z,y,x`.
+For this example we assume an image with 5 dimensions and axes called `t,c,z,y,x`, but arrays of any dimension and
+any axis-ordering are permitted.
 
 <pre>
 .                             # Root folder, potentially in S3,
@@ -147,8 +148,8 @@ For this example we assume an image with 5 dimensions and axes called `t,c,z,y,x
     ├── n                     # The name of the array is arbitrary with the ordering defined by
     │   │                     # by the "multiscales" metadata, but is often a sequence starting at 0.
     │   │
-    │   ├── .zarray           # All image arrays must be up to 5-dimensional
-    │   │                     # with the axis of type time before type channel, before spatial axes.
+    │   ├── .zarray           # All image arrays in a "multiscales" group must have an
+    │   │                     # equal number of dimensions.
     │   │
     │   └─ t                  # Chunks are stored with the nested directory layout.
     │      └─ c               # All but the last chunk element are stored as directories.
