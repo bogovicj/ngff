@@ -1238,14 +1238,15 @@ Possible extra rowspan handling
 			grid-column: 2;
 			width: auto;
 			margin-right: 1rem;
+			border-bottom: 3px solid transparent;
+			margin-bottom: -3px;
 		}
 		#toc .content:hover,
 		#toc .content:focus {
 			background: rgba(75%, 75%, 75%, .25);
 			background: var(--a-hover-bg);
-			border-bottom: 3px solid #054572;
-			border-bottom: 3px solid var(--toclink-underline);
-			margin-bottom: -3px;
+			border-bottom-color: #054572;
+			border-bottom-color: var(--toclink-underline);
 		}
 		#toc li li li .content {
 			margin-left: 1rem;
@@ -1487,11 +1488,11 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 2e3c4c68b, updated Fri Jan 14 14:49:00 2022 -0800" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://ngff.openmicroscopy.org/0.2/" rel="canonical">
-  <meta content="a5162078c93ca7f11249523435e4d13b8d9f4c12" name="document-revision">
-<style>/* style-autolinks */
-
+  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
+  <meta content="fc65eb3dfea374a9f8c6de829a50edc764ae7644" name="document-revision">
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -1551,8 +1552,17 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
-<style>/* style-colors */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -1660,9 +1670,121 @@ pre .property::before, pre .property::after {
     --outdated-shadow: red;
 
     --editedrec-bg: darkorange;
-}</style>
-<style>/* style-counters */
+}
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
+</style>
+<style>/* Boilerplate: style-counters */
 body {
     counter-reset: example figure issue;
 }
@@ -1689,9 +1811,9 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
-}</style>
-<style>/* style-issues */
-
+}
+</style>
+<style>/* Boilerplate: style-issues */
 a[href].issue-return {
     float: right;
     float: inline-end;
@@ -1700,8 +1822,7 @@ a[href].issue-return {
     text-decoration: none;
 }
 </style>
-<style>/* style-md-lists */
-
+<style>/* Boilerplate: style-md-lists */
 /* This is a weird hack for me not yet following the commonmark spec
    regarding paragraph and lists. */
 [data-md] > :first-child {
@@ -1709,8 +1830,9 @@ a[href].issue-return {
 }
 [data-md] > :last-child {
     margin-bottom: 0;
-}</style>
-<style>/* style-selflinks */
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
 
 :root {
     --selflink-text: white;
@@ -1737,6 +1859,14 @@ a.self-link:hover {
 .heading > a.self-link {
     font-size: 83%;
 }
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
 }
@@ -1762,7 +1892,7 @@ a.self-link::before            { content: "¶"; }
 .heading > a.self-link::before { content: "§"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
-<style>/* style-syntax-highlighting */
+<style>/* Boilerplate: style-syntax-highlighting */
 
 code.highlight { padding: .1em; border-radius: .3em; }
 pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
@@ -1820,12 +1950,76 @@ c-[vc] { color: #0077aa } /* Name.Variable.Class */
 c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
+
+
+@media (prefers-color-scheme: dark) {
+    .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
+
+    c-[a] { color: #d33682 } /* Keyword.Declaration */
+    c-[b] { color: #d33682 } /* Keyword.Type */
+    c-[c] { color: #2aa198 } /* Comment */
+    c-[d] { color: #2aa198 } /* Comment.Multiline */
+    c-[e] { color: #268bd2 } /* Name.Attribute */
+    c-[f] { color: #b58900 } /* Name.Tag */
+    c-[g] { color: #cb4b16 } /* Name.Variable */
+    c-[k] { color: #d33682 } /* Keyword */
+    c-[l] { color: #657b83 } /* Literal */
+    c-[m] { color: #657b83 } /* Literal.Number */
+    c-[n] { color: #268bd2 } /* Name */
+    c-[o] { color: #657b83 } /* Operator */
+    c-[p] { color: #657b83 } /* Punctuation */
+    c-[s] { color: #6c71c4 } /* Literal.String */
+    c-[t] { color: #6c71c4 } /* Literal.String.Single */
+    c-[u] { color: #6c71c4 } /* Literal.String.Double */
+    c-[ch] { color: #2aa198 } /* Comment.Hashbang */
+    c-[cp] { color: #2aa198 } /* Comment.Preproc */
+    c-[cpf] { color: #2aa198 } /* Comment.PreprocFile */
+    c-[c1] { color: #2aa198 } /* Comment.Single */
+    c-[cs] { color: #2aa198 } /* Comment.Special */
+    c-[kc] { color: #d33682 } /* Keyword.Constant */
+    c-[kn] { color: #d33682 } /* Keyword.Namespace */
+    c-[kp] { color: #d33682 } /* Keyword.Pseudo */
+    c-[kr] { color: #d33682 } /* Keyword.Reserved */
+    c-[ld] { color: #657b83 } /* Literal.Date */
+    c-[nc] { color: #268bd2 } /* Name.Class */
+    c-[no] { color: #268bd2 } /* Name.Constant */
+    c-[nd] { color: #268bd2 } /* Name.Decorator */
+    c-[ni] { color: #268bd2 } /* Name.Entity */
+    c-[ne] { color: #268bd2 } /* Name.Exception */
+    c-[nf] { color: #268bd2 } /* Name.Function */
+    c-[nl] { color: #268bd2 } /* Name.Label */
+    c-[nn] { color: #268bd2 } /* Name.Namespace */
+    c-[py] { color: #268bd2 } /* Name.Property */
+    c-[ow] { color: #657b83 } /* Operator.Word */
+    c-[mb] { color: #657b83 } /* Literal.Number.Bin */
+    c-[mf] { color: #657b83 } /* Literal.Number.Float */
+    c-[mh] { color: #657b83 } /* Literal.Number.Hex */
+    c-[mi] { color: #657b83 } /* Literal.Number.Integer */
+    c-[mo] { color: #657b83 } /* Literal.Number.Oct */
+    c-[sa] { color: #6c71c4 } /* Literal.String.Affix */
+    c-[sb] { color: #6c71c4 } /* Literal.String.Backtick */
+    c-[sc] { color: #6c71c4 } /* Literal.String.Char */
+    c-[dl] { color: #6c71c4 } /* Literal.String.Delimiter */
+    c-[sd] { color: #6c71c4 } /* Literal.String.Doc */
+    c-[se] { color: #6c71c4 } /* Literal.String.Escape */
+    c-[sh] { color: #6c71c4 } /* Literal.String.Heredoc */
+    c-[si] { color: #6c71c4 } /* Literal.String.Interpol */
+    c-[sx] { color: #6c71c4 } /* Literal.String.Other */
+    c-[sr] { color: #6c71c4 } /* Literal.String.Regex */
+    c-[ss] { color: #6c71c4 } /* Literal.String.Symbol */
+    c-[fm] { color: #268bd2 } /* Name.Function.Magic */
+    c-[vc] { color: #cb4b16 } /* Name.Variable.Class */
+    c-[vg] { color: #cb4b16 } /* Name.Variable.Global */
+    c-[vi] { color: #cb4b16 } /* Name.Variable.Instance */
+    c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
+    c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
+}
 </style>
  <body class="h-entry">
   <div class="head">
     <img alt="OME logo (6 circles in a hexagon)" src="http://www.openmicroscopy.org/img/logos/ome-logomark.svg" style="float:right;width:42px;height:42px;"> 
    <h1 class="p-name no-ref" id="title">Next-generation file formats (NGFF)</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Final Community Group Report, <time class="dt-updated" datetime="2022-02-09">9 February 2022</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Final Community Group Report, <time class="dt-updated" datetime="2024-07-30">30 July 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1839,7 +2033,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright">Copyright © 2020-2022 <a href="https://www.openmicroscopy.org/"><abbr title="Open Microscopy Environment">OME</abbr></a><sup>®</sup> (<a href="https://dundee.ac.uk/"><abbr title="University of Dundee">U. Dundee</abbr></a>).
+   <p class="copyright" data-fill-with="copyright">Copyright © 2020-2024 <a href="https://www.openmicroscopy.org/"><abbr title="Open Microscopy Environment">OME</abbr></a><sup>®</sup> (<a href="https://dundee.ac.uk/"><abbr title="University of Dundee">U. Dundee</abbr></a>).
 OME trademark rules apply. </p>
    <hr title="Separator for header">
   </div>
@@ -1891,7 +2085,6 @@ will be provided between numbered versions. Data written with the latest version
      <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
       <li><a href="#w3c-conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
-      <li><a href="#w3c-conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
      </ol>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -1939,8 +2132,8 @@ of data by name rather than seeking through a large file is at the heart of
 parallelization.</p>
    <p>As a result, a number of formats have been developed more recently which provide
 the basic data structure of an HDF5 file, but do so in a more cloud-friendly way.
-In the <a href="https://pydata.org/">PyData</a> community, the Zarr <a data-link-type="biblio" href="#biblio-zarr">[zarr]</a> format was developed
-for easily storing collections of <a href="https://numpy.org/">NumPy</a> arrays. In the <a href="https://imagej.net/">ImageJ</a> community, N5 <a data-link-type="biblio" href="#biblio-n5">[n5]</a> was developed to work around
+In the <a href="https://pydata.org/">PyData</a> community, the Zarr <a data-link-type="biblio" href="#biblio-zarr" title="Zarr: An implementation of chunked, compressed, N-dimensional arrays for Python.">[zarr]</a> format was developed
+for easily storing collections of <a href="https://numpy.org/">NumPy</a> arrays. In the <a href="https://imagej.net/">ImageJ</a> community, N5 <a data-link-type="biblio" href="#biblio-n5" title="N5---a scalable Java API for hierarchies of chunked n-dimensional tensors and structured meta-data">[n5]</a> was developed to work around
 the limitations of HDF5 ("N5" was originally short for "Not-HDF5").
 Both of these formats permit storing individual chunks of data either locally in
 separate files or in cloud-based object stores as separate keys.</p>
@@ -1954,7 +2147,7 @@ that can be represented in <a href="http://www.openmicroscopy.org/ome-files/">OM
 binary containers. Eventually, we hope, the moniker "next-generation" will no longer be
 applicable, and this will simply be the most efficient, common, and useful representation
 of bioimaging data, whether during acquisition or sharing in the cloud.</p>
-   <p class="note" role="note"><span>Note:</span> The following text makes use of OME-Zarr <a data-link-type="biblio" href="#biblio-ome-zarr-py">[ome-zarr-py]</a>, the current prototype implementation,
+   <p class="note" role="note"><span class="marker">Note:</span> The following text makes use of OME-Zarr <a data-link-type="biblio" href="#biblio-ome-zarr-py" title="ome-zarr-py: Experimental implementation of next-generation file format (NGFF) specifications for storing bioimaging data in the cloud.">[ome-zarr-py]</a>, the current prototype implementation,
 for all examples.</p>
    <h2 class="heading settled" data-level="2" id="on-disk"><span class="secno">2. </span><span class="content">On-disk (or in-cloud) layout</span><a class="self-link" href="#on-disk"></a></h2>
    <p>An overview of the layout of an OME-Zarr fileset should make
@@ -1988,15 +2181,15 @@ multiple levels of resolutions and optionally associated labels.</p>
     │      └─ c               # All but the last chunk element are stored as directories.
     │         └─ z            # The terminal chunk is a file. Together the directory and file names
     │            └─ y         # provide the "chunk coordinate" (t, c, z, y, x), where the maximum coordinate
-    │               └─ x      # will be &lt;code data-opaque bs-autolink-syntax='`dimension_size / chunk_size`'>dimension_size / chunk_size&lt;/code>.
+    │               └─ x      # will be `dimension_size / chunk_size`.
     │
     └── labels
         │
         ├── .zgroup           # The labels group is a container which holds a list of labels to make the objects easily discoverable
         │
-        ├── .zattrs           # All labels will be listed in &lt;code data-opaque bs-autolink-syntax='`.zattrs`'>.zattrs&lt;/code> e.g. &lt;code data-opaque bs-autolink-syntax='`{ &amp;quot;labels&amp;quot;: [ &amp;quot;original/0&amp;quot; ] }`'>{ "labels": [ "original/0" ] }&lt;/code>
-        │                     # Each dimension of the label &lt;code data-opaque bs-autolink-syntax='`(t, c, z, y, x)`'>(t, c, z, y, x)&lt;/code> should be either the same as the
-        │                     # corresponding dimension of the image, or &lt;code data-opaque bs-autolink-syntax='`1`'>1&lt;/code> if that dimension of the label
+        ├── .zattrs           # All labels will be listed in `.zattrs` e.g. `{ "labels": [ "original/0" ] }`
+        │                     # Each dimension of the label `(t, c, z, y, x)` should be either the same as the
+        │                     # corresponding dimension of the image, or `1` if that dimension of the label
         │                     # is irrelevant.
         │
         └── original          # Intermediate folders are permitted but not necessary and currently contain no extra metadata.
@@ -2077,7 +2270,7 @@ multiscale metadata of this image (current version is 0.2).</p>
             <c- p>],</c->
             <c- f>"type"</c-><c- p>:</c-> <c- u>"gaussian"</c-><c- p>,</c->
             <c- f>"metadata"</c-><c- p>:</c-> <c- p>{</c->                                       # <c- kc>t</c->he <c- kc>f</c->ields i<c- kc>n</c-> me<c- kc>ta</c->da<c- kc>ta</c-> depe<c- kc>n</c->d o<c- kc>n</c-> <c- kc>t</c->he dow<c- kc>ns</c->cali<c- kc>n</c->g impleme<c- kc>ntat</c->io<c- kc>n</c->
-                <c- f>"method"</c-><c- p>:</c-> <c- u>"skimage.transform.pyramid_gaussian"</c-><c- p>,</c-> # here<c- p>,</c-> <c- kc>t</c->he param<c- kc>ters</c-> passed <c- kc>t</c->o <c- kc>t</c->he skimage <c- kc>fun</c->c<c- kc>t</c->io<c- kc>n</c-> are give<c- kc>n</c->
+                <c- f>"method"</c-><c- p>:</c-> <c- u>"skimage.transform.pyramid_gaussian"</c-><c- p>,</c-> # here<c- p>,</c-> <c- kc>t</c->he parame<c- kc>ters</c-> passed <c- kc>t</c->o <c- kc>t</c->he skimage <c- kc>fun</c->c<c- kc>t</c->io<c- kc>n</c-> are give<c- kc>n</c->
                 <c- f>"version"</c-><c- p>:</c-> <c- u>"0.16.1"</c-><c- p>,</c->
                 <c- f>"args"</c-><c- p>:</c-> <c- u>"[true]"</c-><c- p>,</c->
                 <c- f>"kwargs"</c-><c- p>:</c-> <c- p>{</c-><c- f>"multichannel"</c-><c- p>:</c-> <c- kc>true</c-><c- p>}</c->
@@ -2227,7 +2420,7 @@ custom attributes of the plate group under the <code>plate</code> key.</p>
       MUST contain a <code>path</code> key identifying the path to the well subgroup.
    </dl>
    <p>For example the following JSON object defines a plate with two acquisition and
-6 wells (2 rows and 3 columns), containing up 2 fields of view per acquistion.</p>
+6 wells (2 rows and 3 columns), containing up 2 fields of view per acquisition.</p>
 <pre class="language-json highlight"><c- f>"plate"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"acquisitions"</c-><c- p>:</c-> <c- p>[</c->
         <c- p>{</c->
@@ -2349,9 +2542,9 @@ the last two fields of view were part of the second acquisition.</p>
    <p>All implementations prevent an equivalent representation of a dataset which can be downloaded or uploaded freely. An interactive
 version of this diagram is available from the <a href="https://downloads.openmicroscopy.org/presentations/2020/Dundee/Workshops/NGFF/zarr_diagram/">OME2020 Workshop</a>.
 Mouseover the blackboxes representing the implementations above to get a quick tip on how to use them.</p>
-   <p class="note" role="note"><span>Note:</span> If you would like to see your project listed, please open an issue or PR on the <a href="https://github.com/ome/ngff">ome/ngff</a> repository.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> If you would like to see your project listed, please open an issue or PR on the <a href="https://github.com/ome/ngff">ome/ngff</a> repository.</p>
    <h2 class="heading settled" data-level="5" id="citing"><span class="secno">5. </span><span class="content">Citing</span><a class="self-link" href="#citing"></a></h2>
-   <p><a href="https://ngff.openmicroscopy.org/0.2">Next-generation file format (NGFF) specifications for storing bioimaging data in the cloud.</a> J. Moore, <em>et al</em>. Editors. Open Microscopy Environment Consortium, 29 March, 2021.
+   <p><a href="https://ngff.openmicroscopy.org/0.2">Next-generation file format (NGFF) specifications for storing bioimaging data in the cloud.</a> J. Moore, <em>et al</em>. Open Microscopy Environment Consortium, 29 March, 2021.
 This edition of the specification is <a href="https://ngff.openmicroscopy.org/0.2/]">https://ngff.openmicroscopy.org/0.2/</a>.
 The latest edition is available at <a href="https://ngff.openmicroscopy.org/latest/">https://ngff.openmicroscopy.org/latest/</a>. <a href="https://doi.org/10.5281/zenodo.4282107">(doi:10.5281/zenodo.4282107)</a></p>
    <h2 class="heading settled" data-level="6" id="history"><span class="secno">6. </span><span class="content">Version History</span><a class="self-link" href="#history"></a></h2>
@@ -2400,7 +2593,7 @@ The latest edition is available at <a href="https://ngff.openmicroscopy.org/late
     However, for readability,
     these words do not appear in all uppercase letters in this specification. </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
@@ -2413,21 +2606,7 @@ The latest edition is available at <a href="https://ngff.openmicroscopy.org/late
     and are set apart from the normative text
     with <code>class="note"</code>,
     like this: </p>
-   <p class="note" role="note">Note, this is an informative note. </p>
-   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms
-    (such as "strip any leading space characters"
-    or "return false and abort these steps")
-    are to be interpreted with the meaning of the key word
-    ("must", "should", "may", etc)
-    used in introducing the algorithm. </p>
-   <p>Conformance requirements phrased as algorithms or specific steps
-    can be implemented in any manner,
-    so long as the end result is equivalent.
-    In particular, the algorithms defined in this specification
-    are intended to be easy to understand
-    and are not intended to be performant.
-    Implementers are encouraged to optimize. </p>
+   <p class="note" role="note">Note, this is an informative note.</p>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
