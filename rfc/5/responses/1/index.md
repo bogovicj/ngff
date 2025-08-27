@@ -114,79 +114,90 @@ Swedlow from the University of Dundee.
 >>
 > Why is this duplication necessary and what does the array zarr.json look like?
 
-Previously, every level of a multiscale dataset was accompanied by a `scale` attribute, om which the amount of downsampling for 
-every level could be inferred. This attribute now needs to be expressed as a coordinate transform oftype: `scale` and needs to be
-present for every scale level. Hence, "duplicated" in this context only means that the transform needs to be specified for every scale
-as a list of coordinate transforms.
+We agree that this requirement may seem confusing at first sight, but viewing it in light of a dataset containing several multiscale images with a
+spatial relationship between them (i.e., the existience of coordinate systems beyond the physical coordinates of the image arrays) should enlighten the
+requirement.
 
-An example of a multiscale dataset with a list of `scale` transforms projecting each scale level into the common coordinate system
-for the multiscale dataset is given below:
+The multiscales metadata block was designed as a self-contained description on how to read the data therein. However, writing a transformation
+between two multiscale images requires a reference a defined physical coordinate system for either of the images. Restricting transformations to be written
+strictly as part of the multiscale metadata, would require these transformations to encapsulate transformations to other, potentially complex coordinate
+systems as part of their metadata. However, in order to keep metadata for multiscale images self-contained and concise, ach scale's transformation
+parameters should be limited to simple scale transformations. This, in turn, requires to write more complex transformations between a multiscale's physical
+coordinate system and other frames of reference separately from the multiscales metadata. This can be achieved by supplying the additional `coordinateTransformations`
+in the following example, which allows to store complex transformations (here only another scaling) aside from the multiscales metadata.
 
 <details>
 
 ```json
-      "multiscales": [
+{
+    "multiscales": [
         {
-          "name": "multiscales",
-          "coordinateSystems": [
-            {
-              "name": "physical",
-              "axes": [
+            "version": "0.5-dev",
+            "name": "example",
+            "coordinateSystems" : [
                 {
-                  "type": "space",
-                  "name": "y",
-                  "unit": "micrometer",
-                  "discrete": false
+                    "name" : "WorldCoordinateSystem",
+                    "axes": [
+                        {"name": "t", "type": "time", "unit": "millisecond"},
+                        {"name": "c", "type": "channel"},
+                        {"name": "z", "type": "space", "unit": "micrometer"},
+                        {"name": "y", "type": "space", "unit": "micrometer"},
+                        {"name": "x", "type": "space", "unit": "micrometer"}
+                    ]
                 },
                 {
-                  "type": "space",
-                  "name": "x",
-                  "unit": "micrometer",
-                  "discrete": false
+                    "name" : "physical",
+                    "axes": [
+                        {"name": "t", "type": "time", "unit": "millisecond"},
+                        {"name": "c", "type": "channel"},
+                        {"name": "z", "type": "space", "unit": "micrometer"},
+                        {"name": "y", "type": "space", "unit": "micrometer"},
+                        {"name": "x", "type": "space", "unit": "micrometer"}
+                    ]
                 }
-              ]
-            }
-          ],
-          "datasets": [
-            {
-              "path": "s0",
-              "coordinateTransformations": [
+            ],
+            "datasets": [
                 {
-                  "type": "scale",
-                  "output": "physical",
-                  "input": "",
-                  "name": "transform-name",
-                  "scale": [6.0, 4.0]
-                }
-              ]
-            },
-            {
-              "path": "s1",
-              "coordinateTransformations": [
+                    "path": "0",
+                    // the transformation of other arrays are defined relative to this, the highest resolution, array
+                    "coordinateTransformations": [{
+                        "type": "identity",
+                        "input": "/0",
+                        "output": "physical"
+                    }]
+                },
                 {
-                  "type": "scale",
-                  "output": "physical",
-                  "input": "",
-                  "name": "transform-name",
-                  "scale": [12.0, 8.0]
-                }
-              ]
-            },
-            {
-              "path": "s2",
-              "coordinateTransformations": [
+                    "path": "1",
+                    "coordinateTransformations": [{
+                        // the second scale level (downscaled by a factor of 2 relative to "0" in zyx)
+                        "type": "scale",
+                        "scale": [1, 1, 2, 2, 2],
+                        "input" : "/1",
+                        "output" : "physical"
+                    }]
+                },
                 {
-                  "type": "scale",
-                  "output": "physical",
-                  "input": "",
-                  "name": "transform-name",
-                  "scale": [24.0, 16.0]
+                    "path": "2",
+                    "coordinateTransformations": [{
+                        // the third scale level (downscaled by a factor of 4 relative to "0" in zyx)
+                        "type": "scale",
+                        "scale": [1, 1, 4, 4, 4],
+                        "input" : "/2",
+                        "output" : "physical"
+                    }]
                 }
-              ]
-            }
-          ]
+            ],
+            "coordinateTransformations": [{
+                // the time unit (0.1 milliseconds), the voxel size for all spatial axes of "0" (0.5 micrometers)
+                "type": "scale",
+                "scale": [0.1, 1.0, 0.5, 0.5, 0.5],
+                "input" : "physical",
+                "output" : "WorldCoordinateSystem"
+            }],
         }
-      ]
+    ]
+  
+}
 ```
 
 </details>
