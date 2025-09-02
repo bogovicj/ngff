@@ -3,16 +3,21 @@
   "node_type": "group",
   "attributes": {
     "ome": {
-      "version": "0.5",
+      "version": "0.6.dev1",
       "multiscales": [
         {
           "name": "example",
-          "axes": [
-            { "name": "t", "type": "time", "unit": "millisecond" },
-            { "name": "c", "type": "channel" },
-            { "name": "z", "type": "space", "unit": "micrometer" },
-            { "name": "y", "type": "space", "unit": "micrometer" },
-            { "name": "x", "type": "space", "unit": "micrometer" }
+          "coordinateSystems": [
+            {
+              "name": "exampleCoordinateSystem",
+              "axes": [
+                { "name": "t", "type": "time", "unit": "millisecond", "discrete": false },
+                { "name": "c", "type": "channel", "discrete": true },
+                { "name": "z", "type": "space", "unit": "micrometer", "discrete": false },
+                { "name": "y", "type": "space", "unit": "micrometer", "discrete": false },
+                { "name": "x", "type": "space", "unit": "micrometer", "discrete": false }
+              ]
+            }
           ],
           "datasets": [
             {
@@ -21,7 +26,9 @@
                 {
                   // the voxel size for the first scale level (0.5 micrometer)
                   "type": "scale",
-                  "scale": [1.0, 1.0, 0.5, 0.5, 0.5]
+                  "scale": [1.0, 1.0, 0.5, 0.5, 0.5],
+                  "input": "/0",
+                  "output": "exampleCoordinateSystem"
                 }
               ]
             },
@@ -31,7 +38,9 @@
                 {
                   // the voxel size for the second scale level (downscaled by a factor of 2 -> 1 micrometer)
                   "type": "scale",
-                  "scale": [1.0, 1.0, 1.0, 1.0, 1.0]
+                  "scale": [1.0, 1.0, 1.0, 1.0, 1.0],
+                  "input": "/1",
+                  "output": "exampleCoordinateSystem"
                 }
               ]
             },
@@ -41,26 +50,22 @@
                 {
                   // the voxel size for the third scale level (downscaled by a factor of 4 -> 2 micrometer)
                   "type": "scale",
-                  "scale": [1.0, 1.0, 2.0, 2.0, 2.0]
+                  "scale": [1.0, 1.0, 2.0, 2.0, 2.0],
+                  "input": "/2",
+                  "output": "exampleCoordinateSystem"
                 }
               ]
             }
           ],
-          "coordinateTransformations": [
+          "coordinateTransformations":[
             {
-              // the time unit (0.1 milliseconds), which is the same for each scale level
+              // the voxel size for the first scale level (0.5 micrometer)
               "type": "scale",
-              "scale": [0.1, 1.0, 1.0, 1.0, 1.0]
-            }
-          ],
-          "type": "gaussian",
-          "metadata": {
-            "description": "the fields in metadata depend on the downscaling implementation. Here, the parameters passed to the skimage function are given",
-            "method": "skimage.transform.pyramid_gaussian",
-            "version": "0.16.1",
-            "args": "[true]",
-            "kwargs": { "multichannel": true }
-          }
+              "scale": [1.0, 1.0, 0.5, 0.5, 0.5],
+              "input": "/0",
+              "output": "exampleCoordinateSystem"
+            }            
+          ]
         }
       ]
     }
