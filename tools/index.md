@@ -9,12 +9,13 @@ In addition to this collection, an evaluation of selected tools/libraries is ava
 | -------- | ------- | ------- |
 | AGAVE | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/allen-cell-animated/agave) | A desktop application for viewing multichannel volume data. |
 | ITKWidgets | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/InsightSoftwareConsortium/itkwidgets) | A Python interface for visualization on the web platform to interactively generate insights into multidimensional images, point sets, and geometry. |
+| Microscopy Nodes | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/aafkegros/MicroscopyNodes) | A Blender add-on for visualizing high-dimensional microscopy data. |
 | MoBIE/BDV | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/mobie/mobie-viewer-fiji) | A Fiji plugin for exploring and sharing big multi-modal image and associated tabular data. |
 | napari |  [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/napari/napari) | A fast, interactive, multi-dimensional image viewer for Python that supports OME-Zarr with the [napari-ome-zarr](https://github.com/ome/napari-ome-zarr) plugin. |
 | Neuroglancer | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/google/neuroglancer) | A WebGL-based viewer for volumetric data. |
 | Viv (Avivator, Vizarr, Vitessce, ...) | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/hms-dbmi/viv) | A WebGL-powered toolkit for interactive visualization of high-resolution, multiplexed bioimaging datasets. The viv toolkit is used by the [Avivator](https://avivator.gehlenborglab.org), [Vizarr](https://github.com/hms-dbmi/vizarr) and [Vitessce](http://vitessce.io) image viewers, among others. |
 | WEBKNOSSOS | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/scalableminds/webknossos) | An open-source tool for annotating and exploring large 3D image datasets. |
-| AICS Image Viewer | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/allen-cell-animated/website-3d-cell-viewer) | A browser-based volume viewer built with React and WebGL (Three.js). |
+| Vol-E | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/allen-cell-animated/vole-app) | A browser-based volume viewer built with React and WebGL (Three.js). |
 
 ## File Conversion
 
@@ -26,6 +27,7 @@ Many of the tools in the *File Reading/Writing* section below also support forma
 | NGFF-Converter | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/glencoesoftware/NGFF-Converter) | A GUI application for conversion of bioimage formats into OME-Zarr or OME-TIFF. |
 | stack_to_multiscale_ngff | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/CBI-PITT/stack_to_multiscale_ngff) | A tool for converting multi-terabyte stacks of images into a multiscale OME-Zarr. |
 | BatchConvert | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://github.com/Euro-BioImaging/BatchConvert) | A Nextflow based command-line tool that wraps bioformats2raw for parallelised conversion of image data collections to OME-Zarr. |
+| stack-to-chunk | [![image](https://github.githubassets.com/favicons/favicon.svg)](https://stack-to-chunk.readthedocs.io) | A Python library to convert stacks of 2D images to OME-Zarr with minimal memory use and maximum concurrency. |
 
 ## File Reading/Writing
 
